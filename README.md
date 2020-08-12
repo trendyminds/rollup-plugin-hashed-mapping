@@ -3,7 +3,7 @@
 A [rollup] plugin that generates a `manifest.hash.json` file for your compiled assets. This is a [fork of the wonderful plugin](https://github.com/surma/rollup-plugin-entrypoint-hashmanifest) provided by [surma](https://github.com/surma).
 
 ```
-$ npm i rollup-plugin-hashed-mapping -D
+$ npm i @trendyminds/rollup-plugin-hashed-mapping -D
 ```
 
 ## Usage
