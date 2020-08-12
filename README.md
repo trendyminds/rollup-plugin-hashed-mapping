@@ -1,45 +1,51 @@
-# rollup-plugin-entrypoint-hashmanifest
+# Rollup Plugin Hashed Mapping
 
-A [rollup] plugin that generates a hash manifest for each entrypoint file you give. The manifest is compatible with the one emitted by [hashmark] and can be processed by tools like [injectassets] (née [replaceinfiles]).
+A [rollup] plugin that generates a `manifest.hash.json` file for your compiled assets. This is a [fork of the wonderful plugin](https://github.com/surma/rollup-plugin-entrypoint-hashmanifest) provided by [surma](https://github.com/surma).
 
 ```
-$ npm install --save rollup-plugin-entrypoint-hashmanifest
+$ npm i rollup-plugin-hashed-mapping -D
 ```
 
 ## Usage
 
+**NOTE**: Your file name format _must_ use the `[name].[hash].js` syntax. Additionally, only `.css` and `.js` assets will be added into the JSON manifest file.
+
 ```js
 // rollup.config.js
-import entrypointHashmanifest from "rollup-plugin-entrypoint-hashmanifest";
+import hashedMapping from "rollup-plugin-hashed-mapping";
 
 export default {
-  input: ["src/main.js", "src/worker.js", "src/serviceworker.js"],
+  input: "src/main.js",
   output: {
     dir: "dist",
     format: "amd",
-    entryFileNames: "[name]-[hash].js",
-    chunkFileNames: "[name]-[hash].js"
+    entryFileNames: "[name].[hash].js"
   },
-  plugins: [entrypointHashmanifest()]
+  plugins: [hashedMapping()]
 };
 ```
+
+## Using the hashed filenames in your templates
+
+This plugin **does not rename assets in your templating files**. This merely provides a JSON mapping of the old and the new names. You should then use this file as a [lookup table](https://en.wikipedia.org/wiki/Lookup_table). Here's an example of how this might work if you are using a server-side templating language such as Twig:
+
+```twig
+<link rel="stylesheet" href="/path/to/your/assets/{{ asset('app.css') }}">
+
+<script src="/path/to/your/assets/{{ asset('app.js') }}"></script>
+```
+
+And your `{{ asset('') }}` function looks up the filename in the JSON manifest and fetches the hashed version.
 
 ## Options
 
 ```js
 {
   // ...
-  plugins: [entrypointHashmanifest(options)];
+  plugins: [
+    hashedMapping({
+      file: "manifest.hash.json"
+    })
+  ];
 }
 ```
-
-- `manifestName`: Name of the file to write the manifest to. Default `entrypoint.hashmanifest.json`.
-
-[rollup]: https://rollupjs.org/
-[hashmark]: https://www.npmjs.com/package/hashmark
-[replaceinfiles]: https://www.npmjs.com/package/@songkick/replaceinfiles
-[injectassets]: https://www.npmjs.com/package/@songkick/injectassets
-
----
-
-License Apache-2.0

@@ -1,20 +1,17 @@
 {
-  "name": "rollup-plugin-entrypoint-hashmanifest",
-  "version": "0.1.2",
-  "description": "A rollup plugin that generates a hash manifest for each entrypoint",
+  "name": "@trendyminds/rollup-plugin-hashed-mapping",
+  "version": "0.1.0",
+  "description": "A rollup plugin that generates a hash manifest for your compiled assets",
   "main": "index.js",
-  "scripts": {
-    "fmt": "prettier --write *.js *.md *.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Surma <surma@google.com>",
-  "license": "Apache-2.0",
+  "author": "TrendyMinds",
+  "license": "MIT",
   "devDependencies": {
-    "prettier": "1.14.2"
+    "prettier": "2.0.5"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/surma/rollup-plugin-entrypoint-hashmanifest"
+    "url": "https://github.com/trendyminds/rollup-plugin-hashed-mapping"
   },
+  "prettier": {},
   "dependencies": {}
 }
