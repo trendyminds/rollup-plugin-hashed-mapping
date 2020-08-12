@@ -1,6 +1,6 @@
 {
   "name": "@trendyminds/rollup-plugin-hashed-mapping",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A rollup plugin that generates a hash manifest for your compiled assets",
   "main": "index.js",
   "author": "TrendyMinds",

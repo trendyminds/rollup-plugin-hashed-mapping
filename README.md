@@ -12,7 +12,7 @@ $ npm i @trendyminds/rollup-plugin-hashed-mapping -D
 
 ```js
 // rollup.config.js
-import hashedMapping from "rollup-plugin-hashed-mapping";
+import hashedMapping from "@trendyminds/rollup-plugin-hashed-mapping";
 
 export default {
   input: "src/main.js",
